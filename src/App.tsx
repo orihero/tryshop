@@ -13,6 +13,17 @@ import Profile from '@/pages/Profile/Profile'
 import Cart from '@/pages/Cart/Cart'
 import MainTabLayout from '@/pages/MainTabLayout'
 
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp?: {
+        ready: () => void
+        expand: () => void
+      }
+    }
+  }
+}
+
 function App() {
   useFontByLanguage();
 
@@ -21,6 +32,14 @@ function App() {
   useEffect(() => {
     checkSession();
   }, [checkSession]);
+
+  useEffect(() => {
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.ready();
+      tg.expand();
+    }
+  }, []);
 
   return (
     <Routes>
