@@ -1,0 +1,13 @@
+{
+  "name": "generate-tryon",
+  "version": "2.0.0",
+  "description": "Appwrite Function: call FASHN API with status polling, generate try-on image, and upload result to Appwrite Storage",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "cd ../.. && appwrite push functions",
+    "dev": "appwrite run functions --function-id generateTryon --port 3000 --with-variables 2>&1"
+  },
+  "dependencies": {
+    "node-appwrite": "^13.0.0"
+  }
+}

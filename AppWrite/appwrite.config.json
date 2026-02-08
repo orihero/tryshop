@@ -1,0 +1,486 @@
+{
+    "projectId": "6971004d001418bac807",
+    "endpoint": "https://sgp.cloud.appwrite.io/v1",
+    "projectName": "tryshop.uz",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "sites": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "databases": [
+        {
+            "$id": "6986f19a000f80233f37",
+            "name": "tryshopdb",
+            "enabled": true
+        }
+    ],
+    "collections": [
+        {
+            "$id": "category",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "6986f19a000f80233f37",
+            "name": "Category",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 128,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "slug",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 64,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "order",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": null,
+                    "max": null,
+                    "default": 0
+                },
+                {
+                    "key": "image",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "format": "url",
+                    "default": null
+                },
+                {
+                    "key": "products",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "product",
+                    "relationType": "oneToMany",
+                    "twoWay": true,
+                    "twoWayKey": "category",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "unique_slug",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "slug"
+                    ],
+                    "orders": []
+                }
+            ]
+        },
+        {
+            "$id": "userProfile",
+            "$permissions": [
+                "read(\"any\")",
+                "create(\"users\")"
+            ],
+            "databaseId": "6986f19a000f80233f37",
+            "name": "UserProfile",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 36,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 128,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "deliveryLocation",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 256,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "email",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "format": "email",
+                    "default": null
+                },
+                {
+                    "key": "preferredLanguage",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "en",
+                        "uz",
+                        "ru"
+                    ],
+                    "format": "enum",
+                    "default": "en"
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "unique_userId",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "userId"
+                    ],
+                    "orders": []
+                }
+            ]
+        },
+        {
+            "$id": "product",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "6986f19a000f80233f37",
+            "name": "Product",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "title",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 256,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "stock",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": null,
+                    "max": null,
+                    "default": 0
+                },
+                {
+                    "key": "backgroundColor",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 7,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "priceColor",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 7,
+                    "default": "#000000",
+                    "encrypt": false
+                },
+                {
+                    "key": "price",
+                    "type": "double",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 1.7976931348623157e+308,
+                    "default": null
+                },
+                {
+                    "key": "description",
+                    "type": "text",
+                    "required": false,
+                    "array": false,
+                    "min": null,
+                    "max": null,
+                    "default": null
+                },
+                {
+                    "key": "image",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "format": "url",
+                    "default": null
+                },
+                {
+                    "key": "gallery",
+                    "type": "string",
+                    "required": false,
+                    "array": true,
+                    "format": "url",
+                    "default": null
+                },
+                {
+                    "key": "sizes",
+                    "type": "string",
+                    "required": false,
+                    "array": true,
+                    "size": 4,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "category",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "category",
+                    "relationType": "oneToMany",
+                    "twoWay": true,
+                    "twoWayKey": "products",
+                    "onDelete": "setNull",
+                    "side": "child"
+                },
+                {
+                    "key": "properties",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "productProperty",
+                    "relationType": "oneToMany",
+                    "twoWay": true,
+                    "twoWayKey": "product",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "colors",
+                    "type": "text",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": null,
+                    "relationType": "",
+                    "twoWay": false,
+                    "twoWayKey": "",
+                    "onDelete": "restrict",
+                    "side": ""
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "productProperty",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "6986f19a000f80233f37",
+            "name": "ProductProperty",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "key",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 128,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "value",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 256,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "product",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "product",
+                    "relationType": "oneToMany",
+                    "twoWay": true,
+                    "twoWayKey": "properties",
+                    "onDelete": "cascade",
+                    "side": "child"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "tryOn",
+            "$permissions": [
+                "read(\"any\")",
+                "create(\"users\")",
+                "update(\"users\")",
+                "delete(\"users\")"
+            ],
+            "databaseId": "6986f19a000f80233f37",
+            "name": "TryOn",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "userProfileId",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 36,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "imageUrls",
+                    "type": "string",
+                    "required": true,
+                    "array": true,
+                    "format": "url",
+                    "default": null
+                },
+                {
+                    "key": "resultImageUrls",
+                    "type": "string",
+                    "required": false,
+                    "array": true,
+                    "format": "url",
+                    "default": null
+                },
+                {
+                    "key": "prompt",
+                    "type": "text",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "product",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedCollection": "product",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "tryOn",
+                    "onDelete": "setNull",
+                    "side": "parent"
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "idx_userProfileId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "userProfileId"
+                    ],
+                    "orders": []
+                }
+            ]
+        }
+    ],
+    "buckets": [
+        {
+            "$id": "6986f248002fb8e3b5ed",
+            "$permissions": [
+                "create(\"users\")",
+                "read(\"users\")",
+                "update(\"users\")",
+                "delete(\"users\")"
+            ],
+            "fileSecurity": false,
+            "name": "files",
+            "enabled": true,
+            "maximumFileSize": 50000000,
+            "allowedFileExtensions": [],
+            "compression": "none",
+            "encryption": true,
+            "antivirus": true
+        }
+    ],
+    "functions": [
+        {
+            "$id": "generateTryon",
+            "name": "generate-tryon",
+            "runtime": "node-18.0",
+            "execute": ["users"],
+            "entrypoint": "index.js",
+            "commands": "npm install",
+            "path": "functions/generate-tryon",
+            "enabled": true,
+            "scopes": [
+                "databases.read",
+                "databases.write",
+                "collections.read",
+                "collections.write",
+                "documents.read",
+                "documents.write",
+                "files.read",
+                "files.write",
+                "buckets.read",
+                "buckets.write"
+            ],
+            "vars": [
+                {"key": "TRYON_PROVIDER", "value": "gemini"},
+                {"key": "GEMINI_API_KEY", "value": ""},
+                {"key": "FASHN_API_KEY", "value": ""},
+                {"key": "APPWRITE_API_KEY", "value": ""},
+                {"key": "APPWRITE_DATABASE_ID", "value": "6986f19a000f80233f37"},
+                {"key": "APPWRITE_TRY_ON_BUCKET_ID", "value": "6986f248002fb8e3b5ed"}
+            ]
+        }
+    ]
+}

@@ -1,5 +1,38 @@
 @import "tailwindcss";
 
+/* Utility class for Roboto (e.g. Home page) */
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Default font for body */
 body {
   font-family: 'Special Gothic Expanded One', sans-serif;
+}
+
+/* Gothic font for Latin languages (English, Uzbek) */
+.font-gothic {
+  font-family: 'Special Gothic Expanded One', sans-serif;
+}
+
+/* Gothic font for Cyrillic language (Russian) */
+.lang-ru .font-gothic {
+  font-family: 'Dela Gothic One', sans-serif;
+}
+
+/* Bottom tab bar: pill shape with center notch, applied directly on the
+   glass element so clip-path and backdrop-filter live on the same node. */
+.tabbar-shape {
+  clip-path: url(#tabbar-shape-clip) !important;
+  border-radius: 0 !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }

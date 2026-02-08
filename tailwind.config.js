@@ -11,6 +11,8 @@ export default {
       },
       fontFamily: {
         'gothic': ['"Special Gothic Expanded One"', 'sans-serif'],
+        'gothic-cyrillic': ['"Dela Gothic One"', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
       },
     },
   },

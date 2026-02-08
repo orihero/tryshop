@@ -1,20 +1,7 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import tryshopLogo from '@/assets/images/tryshop.svg';
 
-const SplashScreen = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Navigate to onboarding after animation completes (1.5s animation + 0.5s delay)
-    const timer = setTimeout(() => {
-      navigate('/onboarding');
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
-
+const SplashScreenView = () => {
   return (
     <div className="fixed inset-0 bg-wheat flex items-center justify-center overflow-hidden">
       <div className="flex flex-col items-center justify-center">
@@ -49,4 +36,4 @@ const SplashScreen = () => {
   );
 };
 
-export default SplashScreen;
+export default SplashScreenView;

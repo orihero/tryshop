@@ -13,4 +13,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      // Proxy local function calls to the Appwrite function running in Docker
+      '/api/function': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/api\/function/, ''),
+      },
+    },
+  },
 })
