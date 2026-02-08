@@ -19,6 +19,12 @@ declare global {
       WebApp?: {
         ready: () => void
         expand: () => void
+        requestFullscreen?: () => void
+        exitFullscreen?: () => void
+        isFullscreen?: boolean
+        isVersionAtLeast?: (version: string) => boolean
+        onEvent?: (eventType: string, callback: () => void) => void
+        offEvent?: (eventType: string, callback: () => void) => void
       }
     }
   }
@@ -35,10 +41,20 @@ function App() {
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
-    if (tg) {
-      tg.ready();
+    if (!tg) return;
+
+    tg.ready();
+
+    const goFullScreen = () => {
       tg.expand();
-    }
+      if (typeof tg.requestFullscreen === 'function') {
+        tg.requestFullscreen();
+      }
+    };
+
+    goFullScreen();
+    const timer = setTimeout(goFullScreen, 150);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
