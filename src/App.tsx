@@ -23,6 +23,8 @@ declare global {
         exitFullscreen?: () => void
         isFullscreen?: boolean
         isVersionAtLeast?: (version: string) => boolean
+        disableVerticalSwipes?: () => void
+        enableVerticalSwipes?: () => void
         onEvent?: (eventType: string, callback: () => void) => void
         offEvent?: (eventType: string, callback: () => void) => void
       }
@@ -44,6 +46,10 @@ function App() {
     if (!tg) return;
 
     tg.ready();
+
+    if (typeof tg.disableVerticalSwipes === 'function') {
+      tg.disableVerticalSwipes();
+    }
 
     const goFullScreen = () => {
       tg.expand();
