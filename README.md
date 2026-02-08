@@ -1,5 +1,16 @@
 # React + TypeScript + Vite
 
+## Deploying to Vercel (Appwrite)
+
+If you get **403 Forbidden** from Appwrite after deploying:
+
+1. In [Appwrite Console](https://cloud.appwrite.io/console) → your project → **Settings** (or **Auth** → **Platforms**).
+2. **Add platform** → **Web app**.
+3. Set **Hostname** to your Vercel domain (e.g. `your-app.vercel.app`) — no `https://`.
+4. Ensure all `VITE_*` env vars from `.env` are set in Vercel (Project → Settings → Environment Variables), then redeploy.
+
+---
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
