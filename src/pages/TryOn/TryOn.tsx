@@ -42,7 +42,7 @@ const TryOn = () => {
 
   return (
     <TryOnLayout
-      photoUrl={displayImageUrl || uploadedImageUrl}
+      photoUrl={(displayImageUrl || uploadedImageUrl) ?? ''}
       product={props.product}
       colors={props.colors}
       selectedSize={props.selectedSize}

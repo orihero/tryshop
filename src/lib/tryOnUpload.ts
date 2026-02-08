@@ -62,6 +62,7 @@ export async function createTryOnDocument(
       imageUrls: params.imageUrls,
       resultImageUrls: [],
       product: params.productId,
+      prompt: null,
       status: 'new',
     }
   );
